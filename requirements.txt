@@ -1,3 +1,4 @@
+streamlit==0.89.0
 fonttools==4.38.0
 kiwisolver==1.4.4
 matplotlib==3.4.1
