@@ -18,25 +18,12 @@ df = df[
     (df['house_size'] >= df['house_size'].mean() - 3 * df['house_size'].std()) &
     (df['house_size'] <= df['house_size'].mean() + 3 * df['house_size'].std())
 ]
-
 # Calculate descriptive statistics
-statistics = df.describe().transpose()
-
-# Sort by option
-sort_option = st.selectbox('Sort by:', options=statistics.columns.tolist())
-
-# Ascending/Descending option
-asc_desc = st.selectbox('Order:', options=['Ascending', 'Descending'])
-order = True if asc_desc == 'Ascending' else False
-
-statistics = statistics.sort_values(by=sort_option, ascending=order)
+statistics = df.describe()
 
 # Display the statistics with streamlit
 st.write("Descriptive Statistics:")
 st.table(statistics)
-
-# Rest of the code
-
 
 # Additional Statistics
 st.write("Additional Statistics:")
@@ -67,16 +54,4 @@ plt.title('House Size vs. Price')
 plt.gca().xaxis.set_major_formatter(mticker.StrMethodFormatter('{x:,.0f}'))
 plt.gca().yaxis.set_major_formatter(mticker.StrMethodFormatter('${x:,.0f}'))
 plt.grid(True)
-st.pyplot(plt)
-
-# Bar plot of the number of houses in each state (only showing states with at least 100 data points)
-state_counts = df['state'].value_counts()
-filtered_state_counts = state_counts[state_counts >= 100]
-plt.figure(figsize=(8, 6))
-filtered_state_counts.plot(kind='bar', color='green')
-plt.xlabel('State')
-plt.ylabel('Number of Houses')
-plt.title('Number of Houses in Each State')
-plt.gca().yaxis.set_major_formatter(mticker.StrMethodFormatter('{x:,.0f}'))
-plt.grid(axis='y')
 st.pyplot(plt)
