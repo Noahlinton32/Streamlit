@@ -20,16 +20,7 @@ df = df[
 ]
 
 # Calculate descriptive statistics
-statistics = df.describe().transpose()
-
-# Sort by option
-sort_option = st.selectbox('Sort by:', options=statistics.columns.tolist())
-
-# Ascending/Descending option
-asc_desc = st.selectbox('Order:', options=['Ascending', 'Descending'])
-order = True if asc_desc == 'Ascending' else False
-
-statistics = statistics.sort_values(by=sort_option, ascending=order)
+statistics = df.describe()
 
 # Display the statistics with streamlit
 st.write("Descriptive Statistics:")
