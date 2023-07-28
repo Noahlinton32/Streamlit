@@ -20,10 +20,10 @@ df = df[
 ]
 
 # Calculate descriptive statistics
-statistics = df.describe()
+statistics = df.describe().transpose()
 
 # Sort by option
-sort_option = st.selectbox('Sort by:', options=statistics.index.tolist())
+sort_option = st.selectbox('Sort by:', options=statistics.columns.tolist())
 
 # Ascending/Descending option
 asc_desc = st.selectbox('Order:', options=['Ascending', 'Descending'])
